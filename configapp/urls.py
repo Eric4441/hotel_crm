@@ -1,18 +1,12 @@
-
 from django.contrib import admin
-from django.urls import path,include
-from configapp.views import *
+from django.urls import path
+from . import views
+
 urlpatterns = [
 
-    path('',index, name="home"),
-    path('add_room',add_room, name="add_room"),
-    path('room_list',room_list, name="room_list"),
-    path('user_list',room_list, name="user_list"),
-
-
+    path('', views.index, name='index'),
+    path('rooms/', views.room_list, name='room_list'),   # o'zgartirdik
+    path('users/', views.users_list, name='users_list'),
+    path('deals/', views.deal_list, name='deal_list'),   # o'zgartirdik
+    path('search/', views.global_search, name='global_search'),
 ]
-
-
-
-
-

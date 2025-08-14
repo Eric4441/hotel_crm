@@ -1,10 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Room list</title>
 </head>
 <body>
-$END$
+{% block title %}Rooms List{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-3">Rooms</h2>
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Room Size</th>
+                <th>Room Type</th>
+                <th>Price</th>
+                <th>Employee</th>
+                <th>Active</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for room in rooms %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ room.title }}</td>
+                <td>{{ room.id_room_size.title }}</td>
+                <td>{{ room.id_room_type.title }}</td>
+                <td>${{ room.price }}</td>
+                <td>{{ room.id_employee.name }} {{ room.id_employee.surname }}</td>
+                <td>
+                    {% if room.is_active %}
+                        <span class="badge bg-success">Yes</span>
+                    {% else %}
+                        <span class="badge bg-danger">No</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="7" class="text-center">No rooms available</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
+
 </body>
 </html>

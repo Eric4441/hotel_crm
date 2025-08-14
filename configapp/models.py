@@ -1,6 +1,4 @@
 from django.db import models
-from django.db.models import ForeignKey
-
 
 class room_type(models.Model):
     title=models.CharField(max_length=30)

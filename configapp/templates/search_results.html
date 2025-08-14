@@ -1,10 +1,73 @@
+<!-- configapp/templates/search_results.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Search results</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-$END$
+
+
+<div class="container mt-4">
+{% if query %}
+    <h3>Search results for: "{{ query }}"</h3>
+
+    <h4>Rooms</h4>
+    <ul>
+    {% for r in rooms %}
+        <li>{{ r.title }} - {{ r.id_room_type.title }} - {{ r.price }}</li>
+    {% empty %}
+        <li>No rooms found</li>
+    {% endfor %}
+    </ul>
+
+    <h4>Users</h4>
+    <ul>
+    {% for u in users %}
+        <li>{{ u.name }} {{ u.surname }} - {{ u.phone }}</li>
+    {% empty %}
+        <li>No users found</li>
+    {% endfor %}
+    </ul>
+
+    <h4>Deals</h4>
+    <ul>
+    {% for d in deals %}
+        <li>{{ d.id_user.name }} → {{ d.id_room.title }}</li>
+    {% empty %}
+        <li>No deals found</li>
+    {% endfor %}
+    </ul>
+
+    <h4>Employees</h4>
+    <ul>
+    {% for e in employees %}
+        <li>{{ e.name }} {{ e.surname }} - {{ e.email }}</li>
+    {% empty %}
+        <li>No employees found</li>
+    {% endfor %}
+    </ul>
+
+    <h4>Room Types</h4>
+    <ul>
+    {% for t in room_types %}
+        <li>{{ t.title }}</li>
+    {% empty %}
+        <li>No room types found</li>
+    {% endfor %}
+    </ul>
+
+    <h4>Room Sizes</h4>
+    <ul>
+    {% for s in room_sizes %}
+        <li>{{ s.title }} - {{ s.discription }}</li>
+    {% empty %}
+        <li>No room sizes found</li>
+    {% endfor %}
+    </ul>
+{% endif %}
+</div>
+
 </body>
 </html>
